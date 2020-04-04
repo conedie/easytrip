@@ -2,6 +2,7 @@ import 'package:easytrip/src/bloc/provider.dart';
 import 'package:easytrip/src/pages/historial_page.dart';
 import 'package:easytrip/src/pages/mapas_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final flutterTts = FlutterTts();
+
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
