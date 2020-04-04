@@ -29,15 +29,16 @@ class DBProvider {
     final path = join(documentsDirectory.path, 'EasyDB.db');
     //creamos base de datos
 
-    return await openDatabase(path, version: 0, onOpen: (db) {},
+    return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
+      await db.execute('CREATE TABLE historico ('
+          'id INTEGER PRIMARY KEY,'
+          'estacion TEXT,'
+          'fecha TEXT'
+          ')');
       await db.execute('CREATE TABLE configuracion ('
           'descripcion TEXT,'
           'valor INTEGER'
-          ')');
-      await db.execute('CREATE TABLE historico ('
-          'estacion TEXT,'
-          'fecha TEXT'
           ')');
     });
   }
@@ -60,6 +61,12 @@ class DBProvider {
     final res = await db
         .query('configuracion', where: 'descripcion = ?', whereArgs: [descrip]);
     return res.isNotEmpty ? res.first : null;
+  }
+
+  Future selectHistorial() async {
+    final db = await database;
+    final res = await db.rawQuery('SELECT * FROM historico LIMIT 5');
+    return res.isNotEmpty ? res : null;
   }
 
   Future updateLoginTwo(Map<String, dynamic> data) async {

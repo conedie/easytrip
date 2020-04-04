@@ -52,16 +52,16 @@ class TransmiModel {
           indicaciones = data['routes'][0]['legs'][0]['steps'];
         }
       }
-
       a++;
     }
 
     var distanciaPaso;
     if (estacionNombre != null) {
       var pasos = [
-        'La estacion mas cercana es $estacionNombre',
-        'Se encuentra a ${(duracion / 60).round()} minutos caminando',
-        'Se encuentra a ${distanciaMaxima.round()} metros'
+        'La estacion mas cercana es $estacionNombre,',
+        'se encuentra a ${distanciaMaxima.round()} metros de tu ubicación y '
+            'a ${(duracion / 60).round()} minutos caminando.',
+        'A continuación las indicaciones...'
       ];
 
       for (var item in indicaciones) {
@@ -71,9 +71,11 @@ class TransmiModel {
       }
 
       DateTime now = new DateTime.now();
-      String formatoFecha = DateFormat('yyyy-MM-dd').format(now);
+      String mes = DateFormat('M').format(now);
+      String dia = DateFormat('d').format(now);
 
-      DBProvider.db.insertHistorico(estacionNombre, formatoFecha);
+      DBProvider.db
+          .insertHistorico(estacionNombre, 'El día $dia, del mes $mes');
 
       return pasos;
     } else {

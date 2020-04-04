@@ -159,7 +159,6 @@ class LoginPage extends StatelessWidget {
     Map info = await usuarioProvider.login(bloc.email, bloc.pass);
     if (info['ok']) {
       var isLogin = await DBProvider.db.selectLogin('login');
-      print(isLogin);
       if (isLogin == null) {
         DBProvider.db.insertLogin('login', 1);
       } else {

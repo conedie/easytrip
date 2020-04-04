@@ -89,7 +89,8 @@ class _MapasPageState extends State<MapasPage> {
     );
   }
 
-  _cerrarSesion() {
+  _cerrarSesion() async {
+    await flutterTts.stop();
     var dataClose = new Map<String, dynamic>();
     dataClose.addAll({'descripcion': 'login'});
     dataClose.addAll({'valor': 0});
