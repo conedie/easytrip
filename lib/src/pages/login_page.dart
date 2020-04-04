@@ -1,4 +1,5 @@
 import 'package:easytrip/src/bloc/provider.dart';
+import 'package:easytrip/src/providers/db_provider.dart';
 import 'package:easytrip/src/providers/usuario_provider.dart';
 import 'package:easytrip/src/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -156,8 +157,17 @@ class LoginPage extends StatelessWidget {
   //ejecutamos el login y validamos la respuesta desde firebase
   _login(LoginBloc bloc, BuildContext context) async {
     Map info = await usuarioProvider.login(bloc.email, bloc.pass);
-
     if (info['ok']) {
+      var isLogin = await DBProvider.db.selectLogin('login');
+      print(isLogin);
+      if (isLogin == null) {
+        DBProvider.db.insertLogin('login', 1);
+      } else {
+        var dataClose = new Map<String, dynamic>();
+        dataClose.addAll({'descripcion': 'login'});
+        dataClose.addAll({'valor': 1});
+        DBProvider.db.updateLoginTwo(dataClose);
+      }
       Navigator.pushReplacementNamed(context, 'home');
     } else {
       mostrarAlerta(context, info['mensaje']);
