@@ -1,7 +1,9 @@
+import 'package:easytrip/src/providers/db_provider.dart';
 import 'package:easytrip/src/providers/estaciones_provider.dart';
 import 'package:easytrip/src/providers/indicacines_provider.dart';
 import 'package:easytrip/src/service/location.dart';
 import 'package:easytrip/src/service/networking.dart';
+import 'package:intl/intl.dart';
 
 const dataTransmi =
     'https://gis.transmilenio.gov.co/arcgis/rest/services/Troncal/consulta_estaciones_troncales/MapServer/1/query?where=1%3D1&outFields=objectid,latitud_estacion,longitud_estacion,nombre_estacion&outSR=4326&f=json';
@@ -49,12 +51,11 @@ class TransmiModel {
           estacionNombre = item.nombre_estacion;
           indicaciones = data['routes'][0]['legs'][0]['steps'];
         }
-        print('generomapBox');
       }
 
-      print(a);
       a++;
     }
+
     var distanciaPaso;
     if (estacionNombre != null) {
       var pasos = [
@@ -68,6 +69,12 @@ class TransmiModel {
         pasos.add(
             'En ${distanciaPaso} metros, ${item['maneuver']['instruction']} ');
       }
+
+      DateTime now = new DateTime.now();
+      String formatoFecha = DateFormat('yyyy-MM-dd').format(now);
+
+      DBProvider.db.insertHistorico(estacionNombre, formatoFecha);
+
       return pasos;
     } else {
       return [];

@@ -16,6 +16,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
+    stop() async {
+      await flutterTts.stop();
+    }
+
     return Scaffold(
       body: _callPage(currentIndex),
       bottomNavigationBar: _crearBottomNavigatorBar(),
@@ -25,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         child: Icon(
           Icons.location_on,
         ),
-        onPressed: () {},
+        onPressed: () => stop(),
       ),
     );
   }
