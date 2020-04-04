@@ -158,6 +158,7 @@ class RegistroPage extends StatelessWidget {
 
   _register(LoginBloc bloc, BuildContext context) async {
     Map info = await usuarioProvider.nuevoUsuario(bloc.email, bloc.pass);
+
     if (info['ok']) {
       Navigator.pushReplacementNamed(context, 'home');
     } else {
