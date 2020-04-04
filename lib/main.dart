@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     return FutureBuilder(
       future: DBProvider.db.selectLogin('login'),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
             child: Center(
               child: CircularProgressIndicator(
@@ -37,22 +37,41 @@ class _MyAppState extends State<MyApp> {
             color: Colors.white,
           );
         } else {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Material App',
-            initialRoute: (snapshot.data['valor'] == 1) ? 'home' : 'login',
-            routes: {
-              'login': (BuildContext context) => LoginPage(),
-              'registro': (BuildContext context) => RegistroPage(),
-              'home': (BuildContext context) => HomePage(),
-              'mapas': (BuildContext context) => MapasPage(),
-              'historial': (BuildContext context) => HistorialPage(),
-            },
-            theme: ThemeData(
-              primaryColor: Colors.deepPurple,
-              secondaryHeaderColor: Colors.deepPurpleAccent,
-            ),
-          );
+          if (!snapshot.hasData) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Material App',
+              initialRoute: 'login',
+              routes: {
+                'login': (BuildContext context) => LoginPage(),
+                'registro': (BuildContext context) => RegistroPage(),
+                'home': (BuildContext context) => HomePage(),
+                'mapas': (BuildContext context) => MapasPage(),
+                'historial': (BuildContext context) => HistorialPage(),
+              },
+              theme: ThemeData(
+                primaryColor: Colors.deepPurple,
+                secondaryHeaderColor: Colors.deepPurpleAccent,
+              ),
+            );
+          } else {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Material App',
+              initialRoute: (snapshot.data['valor'] == 1) ? 'home' : 'login',
+              routes: {
+                'login': (BuildContext context) => LoginPage(),
+                'registro': (BuildContext context) => RegistroPage(),
+                'home': (BuildContext context) => HomePage(),
+                'mapas': (BuildContext context) => MapasPage(),
+                'historial': (BuildContext context) => HistorialPage(),
+              },
+              theme: ThemeData(
+                primaryColor: Colors.deepPurple,
+                secondaryHeaderColor: Colors.deepPurpleAccent,
+              ),
+            );
+          }
         }
       },
     );

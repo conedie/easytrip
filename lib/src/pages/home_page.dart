@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         child: Icon(
-          Icons.location_on,
+          Icons.notifications_off,
         ),
         onPressed: () => stop(),
       ),
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             Icons.brightness_5,
             size: 80.0,
           ),
-          title: Text('Favoritos'),
+          title: Text('Historico'),
         ),
       ],
     );
