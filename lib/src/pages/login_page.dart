@@ -157,6 +157,7 @@ class LoginPage extends StatelessWidget {
   //ejecutamos el login y validamos la respuesta desde firebase
   _login(LoginBloc bloc, BuildContext context) async {
     Map info = await usuarioProvider.login(bloc.email, bloc.pass);
+
     if (info['ok']) {
       var isLogin = await DBProvider.db.selectLogin('login');
       if (isLogin == null) {

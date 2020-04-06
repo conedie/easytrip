@@ -51,19 +51,16 @@ class _HistorialPageState extends State<HistorialPage> {
             ),
           );
         } else {
-          print(snapshot.data.length);
 
           var lectura = 'Los siguientes son tus ultimos 5 destinos. ';
           var a = 1;
           for (var item in snapshot.data) {
-            print(item['fecha']);
             lectura = lectura +
                 'Registro $a: estacion transmilenio ' +
                 item['estacion'] +
                 ', el ${item['fecha']}.';
             a++;
           }
-          print(lectura);
           speak(lectura);
           return ListView.separated(
             padding: const EdgeInsets.all(8),

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 const dataTransmi =
     'https://gis.transmilenio.gov.co/arcgis/rest/services/Troncal/consulta_estaciones_troncales/MapServer/1/query?where=1%3D1&outFields=objectid,latitud_estacion,longitud_estacion,nombre_estacion&outSR=4326&f=json';
+// key del mapbox
 const apiKey =
     'pk.eyJ1IjoiZWFzeXRyaXAiLCJhIjoiY2s4M3FlYWR1MDI1MzNlbGFpZXc1bzlybiJ9.h7rB6HGe7Z_MOtm6qt2JUw';
 
@@ -56,6 +57,7 @@ class TransmiModel {
     }
 
     var distanciaPaso;
+
     if (estacionNombre != null) {
       var pasos = [
         'La estacion mas cercana es $estacionNombre,',

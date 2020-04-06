@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
+
     stop() async {
       await flutterTts.stop();
     }

@@ -5,6 +5,7 @@ import 'package:easytrip/src/pages/login_page.dart';
 import 'package:easytrip/src/pages/mapas_page.dart';
 import 'package:easytrip/src/pages/registro_page.dart';
 import 'package:easytrip/src/providers/db_provider.dart';
+import 'package:easytrip/src/providers/push_notification_provider.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,6 +16,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    final pushProvider = PushNotificactionProvider();
+    pushProvider.initNotificationPermissions();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Provider(
@@ -40,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           if (!snapshot.hasData) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Material App',
+              title: 'EasyTip App',
               initialRoute: 'login',
               routes: {
                 'login': (BuildContext context) => LoginPage(),
@@ -57,7 +65,7 @@ class _MyAppState extends State<MyApp> {
           } else {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Material App',
+              title: 'EasyTip App',
               initialRoute: (snapshot.data['valor'] == 1) ? 'home' : 'login',
               routes: {
                 'login': (BuildContext context) => LoginPage(),
