@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "906079301705",
+    "firebase_url": "https://easytrip-48013.firebaseio.com",
+    "project_id": "easytrip-48013",
+    "storage_bucket": "easytrip-48013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906079301705:android:ad1ae76078feac4f904f98",
+        "android_client_info": {
+          "package_name": "com.example.easytrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906079301705-1f1nsfv0co42o2bajbdvvqkep7pgu461.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easytrip",
+            "certificate_hash": "22462775308120d030083c995bb53a64efa2e8f9"
+          }
+        },
+        {
+          "client_id": "906079301705-3rl6der9v3im8u16t5r4hcddcp8p87sm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3P4pCrwUJvgIIAIMXaLzqM0A-nO1Zok8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906079301705-3rl6der9v3im8u16t5r4hcddcp8p87sm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
